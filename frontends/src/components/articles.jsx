@@ -25,12 +25,37 @@ class Articles extends React.Component {
       });
   }
 
+  deleteArticle(article) {
+    let articles = this.state.articles;
+    let index = articles.findIndex( element => element.id === article.id );
+
+    axios.delete(`/api/v1/articles/${article.id}`)
+      .then((response) => {
+        articles.splice(index, 1);
+        this.setState({articles: articles });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  removePeople(e) {
+    var array = this.state.people;
+    var index = array.indexOf(e.target.value)
+    array.splice(index, 1);
+    this.setState({people: array });
+  }
+
   composeLists() {
     if (this.state.articles.length === 0){
       return "Loading!!"
     } else {
       return this.state.articles.map((article) =>
-        <li key={article.id}>{ article.body } | <Link to={`/articles/${article.id}`}>Show</Link></li>
+        <li key={article.id}>
+          { article.body } |
+          <Link to={`/articles/${article.id}`}>Show</Link> |
+          <button label="Delete" onClick={this.deleteArticle.bind(this, article)}>Delete</button>
+        </li>
       );
     }
   }

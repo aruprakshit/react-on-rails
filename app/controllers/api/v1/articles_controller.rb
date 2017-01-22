@@ -21,6 +21,13 @@ class Api::V1::ArticlesController< ApplicationController
     render json: @article
   end
 
+  def destroy
+    @article = Article.find params[:id]
+    @article.destroy
+
+    render json: @article
+  end
+
   private
 
     def article_params
