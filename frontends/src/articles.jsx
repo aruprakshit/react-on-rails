@@ -1,10 +1,11 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import { Link } from 'react-router';
 
 class Articles extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       articles: []
     };
@@ -22,10 +23,18 @@ class Articles extends React.Component {
       });
   }
 
+  composeLists() {
+    if (this.state.articles.length === 0){
+      return "Loading...."
+    } else {
+      return this.state.articles.map((article) =>
+        <li key={article.id}>{ article.body } | <Link to={`/articles/${article.id}`}>Show</Link></li>
+      );
+    }
+  }
+
   render() {
-    const listItems = this.state.articles.map((article) =>
-      <li key={article.id}>{ article.body }</li>
-    );
+    const listItems = this.composeLists();
 
     return(
       <div>
