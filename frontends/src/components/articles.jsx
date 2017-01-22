@@ -9,8 +9,11 @@ class Articles extends React.Component {
     super(props)
 
     this.state = {
-      articles: []
+      articles: [],
+      newArtcileForm: true
     };
+
+    this.article = {};
   }
 
   componentDidMount() {
@@ -39,11 +42,9 @@ class Articles extends React.Component {
       });
   }
 
-  removePeople(e) {
-    var array = this.state.people;
-    var index = array.indexOf(e.target.value)
-    array.splice(index, 1);
-    this.setState({people: array });
+  editArticle(article) {
+    this.article = article;
+    this.setState({newArtcileForm: false})
   }
 
   composeLists() {
@@ -54,16 +55,26 @@ class Articles extends React.Component {
         <li key={article.id}>
           { article.body } |
           <Link to={`/articles/${article.id}`}>Show</Link> |
-          <button label="Delete" onClick={this.deleteArticle.bind(this, article)}>Delete</button>
+          <button label="Delete" onClick={this.deleteArticle.bind(this, article)}> Delete</button> |
+          <button label="Edit"   onClick={this.editArticle.bind(this, article)}>   Edit</button>
         </li>
       );
     }
   }
 
-  addNewArtcile(newArtcile) {
+  addNewArticle(newArtcile) {
     this.setState({
       articles: this.state.articles.concat([newArtcile])
     });
+  }
+
+  updateArticle(article) {
+    let articles = this.state.articles;
+    let index = articles.findIndex( element => element.id === article.id );
+    articles[index] = article;
+
+    this.setState({articles: articles, newArtcileForm: true});
+    this.article = {};
   }
 
   render() {
@@ -80,7 +91,7 @@ class Articles extends React.Component {
         <h1> Articles: </h1>
         <ul id='articles'>{listItems}</ul>
         <h1>Create New:</h1>
-        <ArticleForm onAdd={this.addNewArtcile.bind(this)}/>
+        <ArticleForm onEdit={this.updateArticle.bind(this)} newRecord={this.state.newArtcileForm} article={this.article} />
      </div>
     )
   }
