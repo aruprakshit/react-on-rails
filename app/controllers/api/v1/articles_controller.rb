@@ -20,4 +20,10 @@ class Api::V1::ArticlesController< ApplicationController
     @article = Article.find params[:id]
     render json: @article
   end
+
+  private
+
+    def article_params
+      params.require(:article).permit(:title, :body)
+    end
 end

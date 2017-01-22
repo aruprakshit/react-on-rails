@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router';
 
+import ArticleForm from 'Components/article_form';
+
 class Articles extends React.Component {
   constructor(props) {
     super(props)
@@ -33,6 +35,12 @@ class Articles extends React.Component {
     }
   }
 
+  addNewArtcile(newArtcile) {
+    this.setState({
+      articles: this.state.articles.concat([newArtcile])
+    });
+  }
+
   render() {
     const listItems = this.composeLists();
 
@@ -46,6 +54,8 @@ class Articles extends React.Component {
         <hr/>
         <h1> Articles: </h1>
         <ul id='articles'>{listItems}</ul>
+        <h1>Create New:</h1>
+        <ArticleForm onAdd={this.addNewArtcile.bind(this)}/>
      </div>
     )
   }
