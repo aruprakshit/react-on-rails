@@ -1,16 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router'
+import axios from 'axios'
+import { Link } from 'react-router';
 
 class Articles extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      articles: []
+    };
+  }
+
+  componentDidMount() {
+    axios.get('/api/v1/articles')
+      .then((response) => {
+        this.setState({
+          articles: response.data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   render() {
+    const listItems = this.state.articles.map((article) =>
+      <li key={article.id}>{ article.body }</li>
+    );
+
     return(
       <div>
-        <h1>React Router Tutorial</h1>
+        <h1>Navigations</h1>
         <ul role="nav">
           <li><Link to="/hello">Hello</Link></li>
           <li><Link to="/world">World</Link></li>
         </ul>
-      </div>
+        <hr/>
+        <h1> Articles: </h1>
+        <ul id='articles'>{listItems}</ul>
+     </div>
     )
   }
 }
