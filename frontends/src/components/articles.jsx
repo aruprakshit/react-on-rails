@@ -91,7 +91,11 @@ class Articles extends React.Component {
         <h1> Articles: </h1>
         <ul id='articles'>{listItems}</ul>
         <h1>Create New:</h1>
-        <ArticleForm onEdit={this.updateArticle.bind(this)} newRecord={this.state.newArtcileForm} article={this.article} />
+        <ArticleForm
+          onEdit={this.updateArticle.bind(this)}
+          onAdd={this.addNewArticle.bind(this)}
+          newRecord={this.state.newArtcileForm}
+          article={this.article} />
      </div>
     )
   }
