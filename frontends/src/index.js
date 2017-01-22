@@ -2,10 +2,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
 
-import World from './world.jsx';
-import Hello from './hello.jsx';
-import Articles from './articles.jsx';
-import Article from './article.jsx';
+import World from 'Components/world';
+import Hello from 'Components/hello';
+import Articles from 'Components/articles';
+import Article from 'Components/article';
 
 render((
   <Router history={hashHistory}>

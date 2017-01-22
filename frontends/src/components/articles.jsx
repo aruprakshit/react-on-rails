@@ -25,7 +25,7 @@ class Articles extends React.Component {
 
   composeLists() {
     if (this.state.articles.length === 0){
-      return "Loading...."
+      return "Loading!!"
     } else {
       return this.state.articles.map((article) =>
         <li key={article.id}>{ article.body } | <Link to={`/articles/${article.id}`}>Show</Link></li>

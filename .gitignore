@@ -12,7 +12,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-
+app/assets/javascripts/bundle.js
 # Ignore Byebug command history file.
 .byebug_history
 node_modules
