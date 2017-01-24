@@ -1,0 +1,7 @@
+#articles > li {
+  list-style-type: none;
+  border: 2px solid green;
+  margin-left: 0;
+  width: auto;
+  text-align: left;
+}

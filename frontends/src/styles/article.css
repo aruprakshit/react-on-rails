@@ -1,0 +1,12 @@
+.article-body {
+  border: 2px solid yellow;
+  margin: 5px 10px 5px 10px;
+}
+
+ul > li {
+  list-style-type: none;
+  border: 2px solid red;
+  margin-left: 0;
+  width: 51px;
+  text-align: left;
+}

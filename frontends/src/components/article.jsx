@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
 
+import css from 'Styles/article';
+
 class Article extends React.Component {
   constructor(props) {
     super(props)
@@ -29,7 +31,7 @@ class Article extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className='article-body'>
         <h1>Navigations</h1>
         <ul role="nav">
           <li><Link to="/">Home</Link></li>

@@ -1,7 +1,6 @@
 class Api::V1::ArticlesController< ApplicationController
   def index
     @articles = Article.all
-    sleep 1;
 
     render json: @articles
   end
